@@ -6,6 +6,7 @@ using System.IO;
 
 // By NeAleks AKA everyofflineuser, 2024, sdwhapidocs.neserver.space.
 
+
 public class DiscordWebhookAPI : MonoBehaviour
 {
     [SerializeField]
@@ -14,10 +15,12 @@ public class DiscordWebhookAPI : MonoBehaviour
     private string WebHookID = "ID";
     [SerializeField]
     private string WebHookToken = "TOKEN";
-    public string verAPI { get; private set; } = "1.8";
- 
 
-    string url;
+    public string verAPI { get; private set; } = "1.9";
+
+    public string lastmsg { get; private set; }
+
+    private string url;
 
     private void Awake()
     {
@@ -25,9 +28,11 @@ public class DiscordWebhookAPI : MonoBehaviour
         url = $"https://discord.com/api/webhooks/{WebHookID}/{WebHookToken}";
     }
 
-    public void SendMessage(bool debug, string content, string username = null, string avatar_url = null, bool tts = false)
+    public void SendMessage(bool debug, string content, string username = null, string avatar_url = null, bool tts = false, bool getmsgdata = false)
     {
-        var request = WebRequest.Create(url);
+        WebRequest request;
+        if (getmsgdata) request = WebRequest.Create(url + "?wait=true");
+        else request = WebRequest.Create(url);
         request.Method = "POST";
 
         ExecuteWebhookObject execute = new ExecuteWebhookObject();
@@ -53,6 +58,7 @@ public class DiscordWebhookAPI : MonoBehaviour
         using var reader = new StreamReader(respStream);
         string data = reader.ReadToEnd();
         if (debug) Debug.Log(data);
+        if (getmsgdata) lastmsg = data;
     }
 
     public string GetMessage(string msgid)

@@ -5,9 +5,13 @@ public class Logging : MonoBehaviour
 {
     private DiscordWebhookAPI api;
 
-    private void Log(DiscordWebhookAPI webhookAPI, string log)
+    public void Log(DiscordWebhookAPI webhookAPI, string log, bool getmsgdata = false)
     {
-        webhookAPI.SendMessage(false, $"[Log] {DateTime.Now.ToString("h:mm:ss tt")} {log}", null, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false);
+        webhookAPI.SendMessage(false, $"[Log] {DateTime.Now.ToString("h:mm:ss tt")} {log}", null, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false, getmsgdata);
+        if (getmsgdata)
+        {
+            // TODO: add in temp variable
+        }
     }
 
     private void ErrorLog(DiscordWebhookAPI webhookAPI, string errorlog)
@@ -45,7 +49,7 @@ public class Logging : MonoBehaviour
 
     private void HandleLog(string logString, string stackTrace, LogType type)
     {
-        if (type == LogType.Error)
+        if (type == LogType.Exception || type == LogType.Error)
         {
             ErrorLog(api, logString);
         }
@@ -58,6 +62,6 @@ public class Logging : MonoBehaviour
         Log(api, "Logging started.");
         Log(api, "[Client] Client Started.");
         Log(api, $"Build v0.1, {Screen.currentResolution}, GPU: {SystemInfo.graphicsDeviceName}, CPU: {SystemInfo.processorType}, OS: {SystemInfo.operatingSystem}, RAM Available: {SystemInfo.systemMemorySize}");
-        //Debug.LogError("Test");
+        Debug.LogError("Test");
     }
 }
