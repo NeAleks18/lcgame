@@ -27,7 +27,7 @@ namespace Q3Movement
 
         [Header("Aiming")] 
         [SerializeField] private CinemachineVirtualCamera m_Camera;
-        [SerializeField] private MouseLook m_MouseLook = new MouseLook();
+        [SerializeField] private MouseLook m_MouseLook;
 
         [Header("Movement")]
         [SerializeField] private float m_Friction = 6;
@@ -40,9 +40,9 @@ namespace Q3Movement
         [Tooltip("How precise air control is")] [SerializeField]
         private float m_AirControl = 0.3f;
 
-        [SerializeField] private MovementSettings m_GroundSettings = new MovementSettings(7, 14, 10);
-        [SerializeField] private MovementSettings m_AirSettings = new MovementSettings(7, 2, 2);
-        [SerializeField] private MovementSettings m_StrafeSettings = new MovementSettings(1, 50, 50);
+        [SerializeField] private MovementSettings m_GroundSettings;
+        [SerializeField] private MovementSettings m_AirSettings;
+        [SerializeField] private MovementSettings m_StrafeSettings;
         [SerializeField] private PlayerInputManager m_PlayerInputManager;
         
         /// <summary>
@@ -92,15 +92,22 @@ namespace Q3Movement
         private void Start()
         {
             if (!isLocalPlayer) return;
+
+            m_MouseLook = new MouseLook();
             m_Tran = transform;
             m_Character = GetComponent<CharacterController>();
-        
+
+            m_GroundSettings = new MovementSettings(7, 14, 10);
+            m_AirSettings = new MovementSettings(7, 2, 2);
+            m_StrafeSettings = new MovementSettings(1, 50, 50);
+
             //Still thinking to maintain this code or adapt it for Cinemachine
             //if you uncomment this will give an error because Cinemachine doesn't have .main
             //if (!m_Camera)
             //    m_Camera = Camera.main;
-        
+
             m_CamTran = m_Camera.transform;
+            m_Camera.Priority = 1;
             m_MouseLook.Init(m_Tran, m_CamTran, m_PlayerInputManager);
             
         }
