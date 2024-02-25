@@ -38,6 +38,6 @@ public class SteamController : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        Steamworks.SteamClient.Shutdown();
+        if (InitializeSteamClient) Steamworks.SteamClient.Shutdown();
     }
 }
