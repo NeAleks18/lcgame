@@ -53,15 +53,16 @@ public class Logging : MonoBehaviour
         {
             ErrorLog(api, logString);
         }
+        if (type == LogType.Log) Log(api, logString);
     }
 
     private void Start()
     {
+        DontDestroyOnLoad(this);
         // Initialize
         Log(api, "Func Start started Succerfull");
         Log(api, "Logging started.");
         Log(api, "[Client] Client Started.");
         Log(api, $"Build v0.1, {Screen.currentResolution}, GPU: {SystemInfo.graphicsDeviceName}, CPU: {SystemInfo.processorType}, OS: {SystemInfo.operatingSystem}, RAM Available: {SystemInfo.systemMemorySize}");
-        Debug.LogError("Test");
     }
 }
