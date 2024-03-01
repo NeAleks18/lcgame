@@ -3,6 +3,7 @@ using System.Text;
 using System.Net;
 using Newtonsoft.Json;
 using System.IO;
+using SteamAudio;
 
 // By NeAleks AKA everyofflineuser, 2024, sdwhapidocs.neserver.space.
 

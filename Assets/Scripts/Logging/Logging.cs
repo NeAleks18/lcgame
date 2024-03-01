@@ -1,3 +1,4 @@
+using Steamworks;
 using System;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class Logging : MonoBehaviour
 
     public void Log(DiscordWebhookAPI webhookAPI, string log, bool getmsgdata = false)
     {
-        webhookAPI.SendMessage(false, $"[Log] {DateTime.Now.ToString("h:mm:ss tt")} {log}", null, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false, getmsgdata);
+        webhookAPI.SendMessage(false, $"[Log] {DateTime.Now.ToString("h:mm:ss tt")} {log}", SteamClient.Name, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false, getmsgdata);
         if (getmsgdata)
         {
             // TODO: add in temp variable
@@ -16,7 +17,7 @@ public class Logging : MonoBehaviour
 
     private void ErrorLog(DiscordWebhookAPI webhookAPI, string errorlog)
     {
-        webhookAPI.SendMessage(false, $"[ERROR] {DateTime.Now.ToString("h:mm:ss tt")} {errorlog}", null, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false);
+        webhookAPI.SendMessage(false, $"[ERROR] {DateTime.Now.ToString("h:mm:ss tt")} {errorlog}", SteamClient.Name, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false);
     }
 
     private void Awake()
@@ -60,9 +61,6 @@ public class Logging : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         // Initialize
-        Log(api, "Func Start started Succerfull");
-        Log(api, "Logging started.");
-        Log(api, "[Client] Client Started.");
-        Log(api, $"Build v0.1, {Screen.currentResolution}, GPU: {SystemInfo.graphicsDeviceName}, CPU: {SystemInfo.processorType}, OS: {SystemInfo.operatingSystem}, RAM Available: {SystemInfo.systemMemorySize}");
+        Log(api, $"Build Pre-Alpha, {Screen.currentResolution}, GPU: {SystemInfo.graphicsDeviceName}, CPU: {SystemInfo.processorType}, OS: {SystemInfo.operatingSystem}, RAM Available: {SystemInfo.systemMemorySize}");
     }
 }

@@ -260,6 +260,17 @@ namespace Fragsurf.Movement {
 
             _colliderObject.transform.rotation = Quaternion.identity;
 
+            // Mouse UnHiding
+            if (Input.GetKeyDown(KeyCode.Escape) && Cursor.lockState == CursorLockMode.Locked) 
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse1) && Cursor.lockState == CursorLockMode.None)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
         
         private void UpdateTestBinds () {
@@ -375,6 +386,12 @@ namespace Fragsurf.Movement {
             newVelocity = Vector3.ClampMagnitude (newVelocity, Mathf.Max (moveData.velocity.magnitude, 30f));
             moveData.velocity = newVelocity;
 
+        }
+
+        private void OnDestroy()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
     }

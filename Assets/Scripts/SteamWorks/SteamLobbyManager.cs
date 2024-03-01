@@ -22,6 +22,7 @@ public class SteamLobbyManager : MonoBehaviour
     }
 
 
+    // You created a lobby
     private void HandleLobbyCreated(Result result, Steamworks.Data.Lobby lobby)
     {
         if (result == Result.OK)
@@ -37,6 +38,7 @@ public class SteamLobbyManager : MonoBehaviour
         }
     }
 
+    // You joined a lobby
     private void HandleImEnterInLobby(Steamworks.Data.Lobby lobby)
     {
         if (lobby.Owner.Id == SteamClient.SteamId) return;
@@ -45,5 +47,6 @@ public class SteamLobbyManager : MonoBehaviour
         gameObject.GetComponent<CustomNetworkManager>().StartClient();
     }
 
+    // Called when the user tries to join a lobby from their friends list game client should attempt to connect to specified lobby when this is received
     private void OnLobbyRequestJoinAsync(Steamworks.Data.Lobby lobby, SteamId id) => SteamMatchmaking.JoinLobbyAsync(lobby.Id);
 }
