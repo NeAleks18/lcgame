@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 88781942402287286}
   - component: {fileID: 1036562335975534642}
   - component: {fileID: 591285708648551788}
+  - component: {fileID: 3065683550632981566}
   - component: {fileID: -6468466760709574887}
   m_Layer: 8
   m_Name: Camera
@@ -316,6 +317,22 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!114 &3065683550632981566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709759094099924874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4cd41cc4d139e40865d6c13c21ce53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActionMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  mainCamera: {fileID: 1036562335975534642}
 --- !u!114 &-6468466760709574887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,7 +447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8544081415062430637
 RectTransform:
   m_ObjectHideFlags: 0
@@ -697,7 +714,7 @@ MonoBehaviour:
   colliderSize: {x: 2, y: 4, z: 2}
   weight: 75
   rigidbodyPushForce: 2
-  solidCollider: 0
+  solidCollider: 1
   viewTransform: {fileID: 2874988010378073749}
   playerRotationTransform: {fileID: 2316659452931380766}
   Body: {fileID: 7163557249243051860}

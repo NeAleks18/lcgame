@@ -54,7 +54,6 @@ public class Logging : MonoBehaviour
         {
             ErrorLog(api, logString);
         }
-        if (type == LogType.Log) Log(api, logString);
     }
 
     private void Start()

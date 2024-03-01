@@ -39,7 +39,7 @@ public class PlayerAiming : NetworkBehaviour
 		Cursor.visible   = false;
 	}
 
-	private void Update()
+    private void Update()
 	{
         if (!isLocalPlayer) return;
         // Fix pausing
