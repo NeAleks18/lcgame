@@ -17,6 +17,5 @@ elif type == 2: typeResult = "Fix"
 elif type == 3: typeResult = "Done"
 
 os.system("git add .")
-if typeResult != "None": os.system(f'git commit -m "[{typeResult}] {text}"')
-else: os.system(f'git commit -m "{text}"')
+os.system(f'git commit -m "[{typeResult}] {text}"')
 os.system("git push")
