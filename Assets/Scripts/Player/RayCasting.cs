@@ -71,7 +71,7 @@ public class RayCasting : MonoBehaviour
     private IEnumerator Repeater()
     {
         //Debug.Log("Start");
-        while (ActionSlider.fillAmount < 1)
+        while (ActionSlider.fillAmount < 1 && AddingSlider)
         {
             //Debug.Log("Add");
             yield return new WaitForSeconds(0.01f);
