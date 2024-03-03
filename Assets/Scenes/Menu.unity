@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1253.7404, g: 1494.088, b: 1979.3987, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 610121512}
   - component: {fileID: 610121513}
   - component: {fileID: 610121514}
+  - component: {fileID: 610121515}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -237,7 +238,8 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
-  lobbycount: 4
+  maxplayers: 4
+  currplayers: 0
 --- !u!114 &610121514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +250,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 150ba2a29c1f46c4098bddb4fefb2378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &610121515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610121507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112f62d88d2658c45b5fd95676ff8f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &671906509
@@ -611,7 +625,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100.05
+  m_fontSize: 99.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -793,7 +807,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.4
+  m_fontSize: 40.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -979,7 +993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7338793952373446220, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
       propertyPath: m_Name
-      value: DiscordWebhookAPI
+      value: DiscordAPI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1097,7 +1111,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100.05
+  m_fontSize: 99.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
