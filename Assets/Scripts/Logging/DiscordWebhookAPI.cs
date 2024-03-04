@@ -3,13 +3,15 @@ using System.Text;
 using System.Net;
 using Newtonsoft.Json;
 using System.IO;
-using SteamAudio;
 
 // By NeAleks AKA everyofflineuser, 2024, sdwhapidocs.neserver.space.
 
 
 public class DiscordWebhookAPI : MonoBehaviour
 {
+
+    public static DiscordWebhookAPI instance { get; private set; }
+
     [SerializeField]
     public string ArchorName = "ArchorName";
     [SerializeField]
@@ -25,8 +27,14 @@ public class DiscordWebhookAPI : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-        url = $"https://discord.com/api/webhooks/{WebHookID}/{WebHookToken}";
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+            url = $"https://discord.com/api/webhooks/{WebHookID}/{WebHookToken}";
+            return;
+        }
+        Destroy(this.gameObject);
     }
 
     public void SendMessage(bool debug, string content, string username = null, string avatar_url = null, bool tts = false, bool getmsgdata = false)

@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 1036562335975534642}
   - component: {fileID: 591285708648551788}
   - component: {fileID: 3065683550632981566}
-  - component: {fileID: -6468466760709574887}
-  - component: {fileID: 7215746398098035777}
+  - component: {fileID: 8243286392020256922}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -232,7 +231,7 @@ MonoBehaviour:
   ActionGameObject: {fileID: 3692549862665416178}
   ActionSlider: {fileID: 6304642087381376702}
   state: 0
---- !u!114 &-6468466760709574887
+--- !u!114 &8243286392020256922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,36 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
---- !u!114 &7215746398098035777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709759094099924874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd9ebf1401392e4bbd47fea32f47642, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentBakedListener: {fileID: 0}
-  applyReverb: 1
-  reverbType: 0
-  useAllProbeBatches: 0
-  probeBatches: []
-  mTotalDataSize: 0
-  mProbeDataSizes: 
-  mIdentifier:
-    type: 0
-    variation: 0
-    endpointInfluence:
-      center:
-        x: 0
-        y: 0
-        z: 0
-      radius: 0
-  mProbeBatchesUsed: []
+  attenuationObject: {fileID: 1709759094099924874}
 --- !u!1 &2334731042234383603
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +522,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 103.95
+  m_fontSize: 47.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

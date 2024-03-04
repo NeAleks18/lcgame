@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Logging : MonoBehaviour
 {
+    public static Logging instance { get; private set; }
+
     private DiscordWebhookAPI api;
 
     public Task Log(DiscordWebhookAPI webhookAPI, string log, bool getmsgdata = false)
@@ -21,20 +23,26 @@ public class Logging : MonoBehaviour
 
     private void Awake()
     {
-        // Перебираем все объекты с типом DiscordWebhookAPI
-        foreach (var obj in FindObjectsOfType<DiscordWebhookAPI>())
+        if(instance == null)
         {
-            // Проверяем, содержит ли объект необходимую переменную ArchorName с нужным значением
-            if (obj.ArchorName == "Logging")
+            instance = this;
+            // Перебираем все объекты с типом DiscordWebhookAPI
+            foreach (var obj in FindObjectsOfType<DiscordWebhookAPI>())
             {
-                // Делаем что-то со найденным объектом
-                api = obj;
+                // Проверяем, содержит ли объект необходимую переменную ArchorName с нужным значением
+                if (obj.ArchorName == "Logging")
+                {
+                    // Делаем что-то со найденным объектом
+                    api = obj;
+                }
             }
+            if (api == null)
+            {
+                Debug.Log("Объект с нужным Якорем не найден!");
+            }
+            return;
         }
-        if (api == null)
-        {
-            Debug.Log("Объект с нужным Якорем не найден!");
-        }
+        Destroy(this.gameObject);
     }
 
     private void OnEnable()
