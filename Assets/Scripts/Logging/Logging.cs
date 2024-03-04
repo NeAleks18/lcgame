@@ -1,23 +1,22 @@
 using Steamworks;
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Logging : MonoBehaviour
 {
     private DiscordWebhookAPI api;
 
-    public void Log(DiscordWebhookAPI webhookAPI, string log, bool getmsgdata = false)
+    public Task Log(DiscordWebhookAPI webhookAPI, string log, bool getmsgdata = false)
     {
         webhookAPI.SendMessage(false, $"[Log] {DateTime.Now.ToString("h:mm:ss tt")} {log}", SteamClient.Name, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false, getmsgdata);
-        if (getmsgdata)
-        {
-            // TODO: add in temp variable
-        }
+        return Task.CompletedTask;
     }
 
-    private void ErrorLog(DiscordWebhookAPI webhookAPI, string errorlog)
+    private Task ErrorLog(DiscordWebhookAPI webhookAPI, string errorlog)
     {
         webhookAPI.SendMessage(false, $"[ERROR] {DateTime.Now.ToString("h:mm:ss tt")} {errorlog}", SteamClient.Name, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false);
+        return Task.CompletedTask;
     }
 
     private void Awake()
@@ -48,12 +47,10 @@ public class Logging : MonoBehaviour
         Application.logMessageReceived -= HandleLog;
     }
 
-    private void HandleLog(string logString, string stackTrace, LogType type)
+    private async void HandleLog(string logString, string stackTrace, LogType type)
     {
-        if (type == LogType.Exception || type == LogType.Error)
-        {
-            ErrorLog(api, logString);
-        }
+        if (type == LogType.Exception || type == LogType.Error) await ErrorLog(api, logString);
+        //else await Log(api, logString);
     }
 
     private void Start()

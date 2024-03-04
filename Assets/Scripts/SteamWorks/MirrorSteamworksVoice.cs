@@ -5,21 +5,17 @@ using Mirror;
 using Steamworks;
 using UnityEngine;
 
-// TODO To use:
-// Grab this and its dependencies: https://github.com/Chykary/FizzyFacepunch
-// Attach this to a Mirror Player Prefab and assign an AudioSource
-// Test with two different Steam accounts (on two machines or with a VM)
-// Enjoy! :D  -Finnbarr from No Bloat Studios
-
+// Код не наш, спасибо GitHub GIST
 public class MirrorSteamworksVoice : NetworkBehaviour
 {
-    [SerializeField] AudioSource _audioSource;
+    [SerializeField] 
+    private AudioSource _audioSource;
 
-    readonly MemoryStream _compressedVoiceStream = new();
-    readonly MemoryStream _decompressedVoiceStream = new();
-    readonly Queue<float> _streamingReadQueue = new();
+    private readonly MemoryStream _compressedVoiceStream = new();
+    private readonly MemoryStream _decompressedVoiceStream = new();
+    private readonly Queue<float> _streamingReadQueue = new();
 
-    void Start()
+    private void Start()
     {
         _audioSource.clip = AudioClip.Create("SteamVoice", Convert.ToInt32(SteamUser.SampleRate),
             1, Convert.ToInt32(SteamUser.SampleRate), true, PcmReaderCallback);
@@ -27,31 +23,29 @@ public class MirrorSteamworksVoice : NetworkBehaviour
         _audioSource.Play();
     }
 
-    void Update()
+    private void Update()
     {
-        if (isLocalPlayer)
+        if (!isLocalPlayer) return;
+        SteamUser.VoiceRecord = Input.GetKey(KeyCode.V);
+
+        if (SteamUser.HasVoiceData)
         {
-            SteamUser.VoiceRecord = Input.GetKey(KeyCode.V);
+            _compressedVoiceStream.Position = 0;
 
-            if (SteamUser.HasVoiceData)
-            {
-                _compressedVoiceStream.Position = 0;
+            int numBytesWritten = SteamUser.ReadVoiceData(_compressedVoiceStream);
 
-                int numBytesWritten = SteamUser.ReadVoiceData(_compressedVoiceStream);
-
-                CmdSubmitVoice(new ArraySegment<byte>(_compressedVoiceStream.GetBuffer(), 0, numBytesWritten));
-            }
+            CmdSubmitVoice(new ArraySegment<byte>(_compressedVoiceStream.GetBuffer(), 0, numBytesWritten));
         }
     }
 
     [Command(channel = Channels.Unreliable, requiresAuthority = true)]
-    void CmdSubmitVoice(ArraySegment<byte> voiceData)
+    private void CmdSubmitVoice(ArraySegment<byte> voiceData)
     {
         RpcBroadcastVoice(voiceData);
     }
 
     [ClientRpc(channel = Channels.Unreliable, includeOwner = false)]
-    void RpcBroadcastVoice(ArraySegment<byte> voiceData)
+    private void RpcBroadcastVoice(ArraySegment<byte> voiceData)
     {
         _compressedVoiceStream.Position = 0;
         _compressedVoiceStream.Write(voiceData);
@@ -75,7 +69,7 @@ public class MirrorSteamworksVoice : NetworkBehaviour
         }
     }
 
-    void PcmReaderCallback(float[] data)
+    private void PcmReaderCallback(float[] data)
     {
         for (int i = 0; i < data.Length; i++)
         {

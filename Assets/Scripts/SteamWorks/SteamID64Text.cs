@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Временный скрипт с установлением SteamID справа сверху
 public class SteamID64Text : MonoBehaviour
 {
     private void Awake()

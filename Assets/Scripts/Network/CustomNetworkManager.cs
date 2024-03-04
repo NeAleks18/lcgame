@@ -1,8 +1,13 @@
 using Mirror;
+using UnityEngine;
 
 public class CustomNetworkManager : NetworkManager
 {
-    public short maxplayers = 4;
+    [Header("Player Settings")]
+    [SerializeField]
+    private short maxplayers = 4;
+
+    [HideInInspector]
     public short currplayers;
     
     public override void OnStartServer()

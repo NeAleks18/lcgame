@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class DiscordController : MonoBehaviour
 {
-    Discord.Discord discord = new Discord.Discord(1213812279858958376, (UInt64)CreateFlags.Default);
-    OverlayManager overlaymanager;
+    private Discord.Discord discord = new Discord.Discord(1213812279858958376, (UInt64)CreateFlags.Default);
+    private OverlayManager overlaymanager;
 
 
     private void Start()

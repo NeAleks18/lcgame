@@ -5,8 +5,10 @@ using UnityEngine;
 public class SteamLobbyManager : MonoBehaviour
 {
     
+    // Создание лобби
     public void CreateAndOpenLobbyAsync(int maxMembers) => SteamMatchmaking.CreateLobbyAsync(maxMembers);
 
+    // Подписка событий
     private void OnEnable() 
     {
         SteamMatchmaking.OnLobbyCreated += HandleLobbyCreated;
@@ -14,6 +16,7 @@ public class SteamLobbyManager : MonoBehaviour
         SteamFriends.OnGameLobbyJoinRequested += OnLobbyRequestJoinAsync;
     }
 
+    // Отписка событий
     private void OnDisable()
     {
         SteamMatchmaking.OnLobbyCreated -= HandleLobbyCreated;
