@@ -230,7 +230,6 @@ MonoBehaviour:
   mainCamera: {fileID: 1036562335975534642}
   ActionGameObject: {fileID: 3692549862665416178}
   ActionSlider: {fileID: 6304642087381376702}
-  state: 0
 --- !u!114 &8243286392020256922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,7 +521,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 47.6
+  m_fontSize: 103.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -721,6 +720,7 @@ MonoBehaviour:
   viewTransform: {fileID: 2874988010378073749}
   playerRotationTransform: {fileID: 2316659452931380766}
   Body: {fileID: 7163557249243051860}
+  cam: {fileID: 1036562335975534642}
   crouchingHeightMultiplier: 0.5
   crouchingSpeed: 10
   crouchingEnabled: 1
