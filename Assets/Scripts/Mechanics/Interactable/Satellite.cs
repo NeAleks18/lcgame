@@ -26,6 +26,11 @@ namespace Mechanics.Interactable
             }
         }
 
+        private void Awake()
+        {
+            TimeToUse = 10f;
+        }
+
         public void Repair()
         {
             if (!IsBroken) Debug.Log("No Broken, no needed in repair!");

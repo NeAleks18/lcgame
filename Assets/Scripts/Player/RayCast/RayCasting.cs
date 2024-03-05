@@ -16,11 +16,9 @@ public class RayCasting : MonoBehaviour
     [SerializeField]
     private Image ActionSlider;
 
-    private GameObject InteractObject;
+    private IInteractable InteractObject;
     private bool AddingSlider = false;
     private bool toggleEnum = false;
-
-    private short CurrentTimeToUse;
 
     private void RayCast()
     {
@@ -45,8 +43,7 @@ public class RayCasting : MonoBehaviour
             {
                 AddingSlider = true;
                 ActionGameObject.SetActive(true);
-                InteractObject = hit.collider.gameObject;
-                CurrentTimeToUse = InteractObject.GetComponent<BaseInteractable>().TimeToUse;
+                InteractObject = hit.collider.gameObject.GetComponent<IInteractable>();
             }
             else if (Input.GetKeyUp(KeyCode.E))
             {
@@ -63,10 +60,10 @@ public class RayCasting : MonoBehaviour
 
     private IEnumerator Repeater()
     {
-        while (ActionSlider.fillAmount < 1 && AddingSlider)
+        while (ActionSlider.fillAmount < 1 && AddingSlider && InteractObject != null)
         {
+            ActionSlider.fillAmount += 0.01f / (float)InteractObject.TimeToUse;
             yield return new WaitForSeconds(0.01f);
-            ActionSlider.fillAmount += 0.001f * CurrentTimeToUse;
         }
     }
 
@@ -78,21 +75,20 @@ public class RayCasting : MonoBehaviour
             StartCoroutine(Repeater());
         }
 
-        if (ActionSlider.fillAmount >= 1)
+        if (ActionSlider.fillAmount >= 1 && !AddingSlider)
         {
-            InteractObject.GetComponent<IInteractable>().Interact();
+            InteractObject.Interact();
             CancelAction();
         }
     }
 
     private void CancelAction()
     {
+        InteractObject = null;
         toggleEnum = false;
         AddingSlider = false;
         ActionSlider.fillAmount = 0;
         ActionGameObject.SetActive(false);
-        InteractObject = null;
-        CurrentTimeToUse = 0;
     }
 
     private void Update()
