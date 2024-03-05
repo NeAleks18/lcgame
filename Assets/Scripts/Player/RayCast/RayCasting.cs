@@ -1,15 +1,8 @@
-using Mechanics;
+using Mechanics.Interactable;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Ray = UnityEngine.Ray;
-
-
-public enum StateOfRayCasting
-{
-    None,
-    Satellite
-}
 
 public class RayCasting : MonoBehaviour
 {
@@ -22,12 +15,12 @@ public class RayCasting : MonoBehaviour
     private GameObject ActionGameObject;
     [SerializeField]
     private Image ActionSlider;
-    [SerializeField]
-    private StateOfRayCasting state = StateOfRayCasting.None;
 
-    private GameObject actionobject;
+    private GameObject InteractObject;
     private bool AddingSlider = false;
     private bool toggleEnum = false;
+
+    private short CurrentTimeToUse;
 
     private void RayCast()
     {
@@ -46,14 +39,14 @@ public class RayCasting : MonoBehaviour
             return;
         }
 
-        if (hit.collider.gameObject.tag == "Satellite")
+        if (hit.collider.gameObject.tag == "Interactable")
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 AddingSlider = true;
                 ActionGameObject.SetActive(true);
-                actionobject = hit.collider.gameObject;
-                state = StateOfRayCasting.Satellite;
+                InteractObject = hit.collider.gameObject;
+                CurrentTimeToUse = InteractObject.GetComponent<BaseInteractable>().TimeToUse;
             }
             else if (Input.GetKeyUp(KeyCode.E))
             {
@@ -70,12 +63,10 @@ public class RayCasting : MonoBehaviour
 
     private IEnumerator Repeater()
     {
-        //Debug.Log("Start");
         while (ActionSlider.fillAmount < 1 && AddingSlider)
         {
-            //Debug.Log("Add");
             yield return new WaitForSeconds(0.01f);
-            ActionSlider.fillAmount += 0.001f;
+            ActionSlider.fillAmount += 0.001f * CurrentTimeToUse;
         }
     }
 
@@ -89,23 +80,8 @@ public class RayCasting : MonoBehaviour
 
         if (ActionSlider.fillAmount >= 1)
         {
-            switch (state)
-            {
-                case StateOfRayCasting.None:
-                    Debug.Log("Unknown action!");
-                    CancelAction();
-                    break;
-
-                case StateOfRayCasting.Satellite:
-                    actionobject.GetComponent<Satellite>().Repair();
-                    CancelAction();
-                    break;
-
-                default:
-                    Debug.Log("Unknown action!");
-                    CancelAction();
-                    break;
-            }
+            InteractObject.GetComponent<IInteractable>().Interact();
+            CancelAction();
         }
     }
 
@@ -115,8 +91,8 @@ public class RayCasting : MonoBehaviour
         AddingSlider = false;
         ActionSlider.fillAmount = 0;
         ActionGameObject.SetActive(false);
-        actionobject = null;
-        state = StateOfRayCasting.None;
+        InteractObject = null;
+        CurrentTimeToUse = 0;
     }
 
     private void Update()

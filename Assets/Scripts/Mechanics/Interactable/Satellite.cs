@@ -1,7 +1,6 @@
 using UnityEngine;
-using Mirror;
 
-namespace Mechanics
+namespace Mechanics.Interactable
 {
     // States of Satellite
     enum stateofSatellite
@@ -11,7 +10,7 @@ namespace Mechanics
     }
 
     // Main Class
-    public class Satellite : NetworkBehaviour
+    public class Satellite : BaseInteractable
     {
         [Header("Satellite Settings")]
 
@@ -35,6 +34,12 @@ namespace Mechanics
                 state = stateofSatellite.None;
                 Debug.Log("Repaired!");
             }
+        }
+
+        public override void Interact()
+        {
+            base.Interact();
+            Repair();
         }
     }
 }

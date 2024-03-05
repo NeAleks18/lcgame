@@ -6,9 +6,9 @@ TagManager:
   tags:
   - CinemachineTarget
   - WebhookManager
-  - Satellite
   - ShipLandTransform
   - ShipLandSound
+  - Interactable
   layers:
   - Default
   - TransparentFX

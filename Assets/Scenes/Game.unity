@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 235805477}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Satellite
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -677,6 +677,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  TimeToUse: 4
   state: 1
 --- !u!65 &235805473
 BoxCollider:
