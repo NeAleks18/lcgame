@@ -9,6 +9,7 @@ TagManager:
   - ShipLandTransform
   - ShipLandSound
   - Interactable
+  - ScanerColider
   layers:
   - Default
   - TransparentFX

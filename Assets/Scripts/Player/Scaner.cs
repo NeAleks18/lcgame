@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Scaner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject ScanerColider;
 
-    // Update is called once per frame
     void Update()
-    {
-        
+    {   ScanerColider.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ScanerColider.SetActive(true);
+            
+        }
     }
 }
+
