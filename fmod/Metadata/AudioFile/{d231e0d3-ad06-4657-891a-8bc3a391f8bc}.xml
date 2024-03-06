@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{d231e0d3-ad06-4657-891a-8bc3a391f8bc}">
+		<property name="assetPath">
+			<value>Land.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>55.588571428571427</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9f3e6907-6770-407b-8e33-a979d53eae5b}</destination>
+		</relationship>
+	</object>
+</objects>

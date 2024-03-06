@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{009a6df9-fe24-4ea6-8bfe-71db9eca9b7c}">
+		<property name="assetPath">
+			<value>chael-sparks(chosic.com).mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>202.13551020408164</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9f3e6907-6770-407b-8e33-a979d53eae5b}</destination>
+		</relationship>
+	</object>
+</objects>

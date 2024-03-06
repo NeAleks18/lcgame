@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{498aac08-a4f4-4ff9-a6cf-632c4c21417c}">
+		<property name="assetPath">
+			<value>turnoffengine.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>7.0530612244897961</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9f3e6907-6770-407b-8e33-a979d53eae5b}</destination>
+		</relationship>
+	</object>
+</objects>

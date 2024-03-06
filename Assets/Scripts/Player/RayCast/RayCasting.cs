@@ -75,7 +75,7 @@ public class RayCasting : MonoBehaviour
             StartCoroutine(Repeater());
         }
 
-        if (ActionSlider.fillAmount >= 1 && !AddingSlider)
+        if (ActionSlider.fillAmount >= 1 && InteractObject != null)
         {
             InteractObject.Interact();
             CancelAction();

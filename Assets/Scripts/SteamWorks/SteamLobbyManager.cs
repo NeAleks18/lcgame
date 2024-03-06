@@ -1,5 +1,4 @@
 using Steamworks;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class SteamLobbyManager : MonoBehaviour
@@ -48,6 +47,7 @@ public class SteamLobbyManager : MonoBehaviour
         Debug.Log($"I'm Join to {lobby.Id} and Owner is {lobby.Owner.Name}");
         gameObject.GetComponent<CustomNetworkManager>().networkAddress = lobby.Owner.Id.ToString();
         gameObject.GetComponent<CustomNetworkManager>().StartClient();
+        lobby.Leave();
     }
 
     // Called when the user tries to join a lobby from their friends list game client should attempt to connect to specified lobby when this is received

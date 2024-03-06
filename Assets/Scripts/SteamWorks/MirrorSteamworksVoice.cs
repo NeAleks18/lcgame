@@ -1,86 +1,119 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using Mirror;
 using Steamworks;
+using System.IO;
 using UnityEngine;
 
-// Код не наш, спасибо GitHub GIST
 public class MirrorSteamworksVoice : NetworkBehaviour
 {
-    [SerializeField] 
-    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioSource source;
+    private MemoryStream output;
+    private MemoryStream stream;
+    private MemoryStream input;
 
-    private readonly MemoryStream _compressedVoiceStream = new();
-    private readonly MemoryStream _decompressedVoiceStream = new();
-    private readonly Queue<float> _streamingReadQueue = new();
+    private int optimalRate;
+    private int clipBufferSize;
+    private float[] clipBuffer;
+
+    private int playbackBuffer;
+    private int dataPosition;
+    private int dataReceived;
 
     private void Start()
     {
-        _audioSource.clip = AudioClip.Create("SteamVoice", Convert.ToInt32(SteamUser.SampleRate),
-            1, Convert.ToInt32(SteamUser.SampleRate), true, PcmReaderCallback);
+        optimalRate = (int)SteamUser.OptimalSampleRate;
 
-        _audioSource.Play();
+        clipBufferSize = optimalRate * 5;
+        clipBuffer = new float[clipBufferSize];
+
+        stream = new MemoryStream();
+        output = new MemoryStream();
+        input = new MemoryStream();
+
+        // Assign OnAudioread as pcmreader callback
+        source.clip = AudioClip.Create("VoiceData", (int)256, 1, (int)optimalRate, true, OnAudioRead, null);
+        source.loop = true;
+        source.Play();
     }
 
+    // User Input: Automatically send data to server in CmdVoice()
     private void Update()
     {
         if (!isLocalPlayer) return;
+
         SteamUser.VoiceRecord = Input.GetKey(KeyCode.V);
 
         if (SteamUser.HasVoiceData)
         {
-            _compressedVoiceStream.Position = 0;
+            int compressedWritten = SteamUser.ReadVoiceData(stream);
+            stream.Position = 0;
 
-            int numBytesWritten = SteamUser.ReadVoiceData(_compressedVoiceStream);
-
-            CmdSubmitVoice(new ArraySegment<byte>(_compressedVoiceStream.GetBuffer(), 0, numBytesWritten));
+            CmdVoice(new ArraySegment<byte>(stream.GetBuffer(), 0, compressedWritten));
         }
     }
 
-    [Command(channel = Channels.Unreliable, requiresAuthority = true)]
-    private void CmdSubmitVoice(ArraySegment<byte> voiceData)
+    // Executed on Server: Sends voice data to all players
+    [Command(channel = 1)]
+    public void CmdVoice(ArraySegment<byte> compressed)
     {
-        RpcBroadcastVoice(voiceData);
+        RpcVoiceData(compressed);
     }
 
-    [ClientRpc(channel = Channels.Unreliable, includeOwner = false)]
-    private void RpcBroadcastVoice(ArraySegment<byte> voiceData)
+    /* ### CALLED ON CLIENT WHEN DATA RECIEVED ### */
+    //[ClientRpc(channel = 1, includeOwner = false)]
+    [ClientRpc(channel = 1)]
+    public void RpcVoiceData(ArraySegment<byte> compressed)
     {
-        _compressedVoiceStream.Position = 0;
-        _compressedVoiceStream.Write(voiceData);
+        input.Write(compressed.ToArray(), 0, compressed.Count);
+        input.Position = 0;
 
-        _compressedVoiceStream.Position = 0;
-        _decompressedVoiceStream.Position = 0;
+        int uncompressedWritten = SteamUser.DecompressVoice(input, compressed.Count, output);
+        input.Position = 0;
 
-        int numBytesWritten = SteamUser.DecompressVoice(_compressedVoiceStream, voiceData.Count, _decompressedVoiceStream);
-
-        _decompressedVoiceStream.Position = 0;
-
-        while (_decompressedVoiceStream.Position < numBytesWritten)
-        {
-            byte byte1 = (byte)_decompressedVoiceStream.ReadByte();
-            byte byte2 = (byte)_decompressedVoiceStream.ReadByte();
-
-            short pcmShort = (short)((byte2 << 8) | (byte1 << 0));
-            float pcmFloat = Convert.ToSingle(pcmShort) / short.MaxValue;
-
-            _streamingReadQueue.Enqueue(pcmFloat);
-        }
+        byte[] outputBuffer = output.GetBuffer();
+        WriteToClip(outputBuffer, uncompressedWritten);
+        output.Position = 0;
     }
 
-    private void PcmReaderCallback(float[] data)
+    /* ### PCMREADER CALLBACK ### */
+    [Client]
+    private void OnAudioRead(float[] data)
     {
-        for (int i = 0; i < data.Length; i++)
+        for (int i = 0; i < data.Length; ++i)
         {
-            if (_streamingReadQueue.TryDequeue(out float sample))
+            // start with silence
+            data[i] = 0;
+
+            // do I  have anything to play?
+            if (playbackBuffer > 0)
             {
-                data[i] = sample;
-            }
-            else
-            {
-                data[i] = 0.0f;  // Nothing in the queue means we should just play silence
+                // current data position playing
+                dataPosition = (dataPosition + 1) % clipBufferSize;
+
+                data[i] = clipBuffer[dataPosition];
+
+                playbackBuffer--;
             }
         }
+
     }
+
+    /* ### WRITES NEW AUDIO DATA INTO CLIP BUFFER ### */
+    [Client]
+    private void WriteToClip(byte[] uncompressed, int iSize)
+    {
+        for (int i = 0; i < iSize; i += 2)
+        {
+            // insert converted float to buffer
+            float converted = (short)(uncompressed[i] | uncompressed[i + 1] << 8) / 32767.0f;
+            clipBuffer[dataReceived] = converted;
+
+            // buffer loop
+            dataReceived = (dataReceived + 1) % clipBufferSize;
+
+            playbackBuffer++;
+        }
+    }
+
 }
