@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1036562335975534642}
   - component: {fileID: 591285708648551788}
   - component: {fileID: 3065683550632981566}
-  - component: {fileID: 8243286392020256922}
-  - component: {fileID: 1431609793652528341}
+  - component: {fileID: 2977104758660039102}
+  - component: {fileID: 2945077659363882839}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -231,7 +231,7 @@ MonoBehaviour:
   mainCamera: {fileID: 1036562335975534642}
   ActionGameObject: {fileID: 3692549862665416178}
   ActionSlider: {fileID: 6304642087381376702}
---- !u!114 &8243286392020256922
+--- !u!114 &2977104758660039102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
   ListenerNumber: -1
---- !u!114 &1431609793652528341
+--- !u!114 &2945077659363882839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
