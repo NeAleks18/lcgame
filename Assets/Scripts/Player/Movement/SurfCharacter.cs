@@ -102,11 +102,11 @@ namespace Fragsurf.Movement {
 
         private void Start () {
             if (!isLocalPlayer) return;
-            Debug.Log("Test");
+            cam.tag = "MainCamera";
+            //Debug.Log("Test");
             Body.SetActive(false);
             viewTransform.gameObject.SetActive(true);
             _controller.playerTransform = playerRotationTransform;
-            cam.tag = "MainCamera";
 
             if (viewTransform != null)
             {

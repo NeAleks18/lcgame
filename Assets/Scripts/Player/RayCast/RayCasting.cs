@@ -39,13 +39,13 @@ public class RayCasting : MonoBehaviour
 
         if (hit.collider.gameObject.tag == "Interactable")
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetButtonDown("Interact"))
             {
                 AddingSlider = true;
                 ActionGameObject.SetActive(true);
                 InteractObject = hit.collider.gameObject.GetComponent<IInteractable>();
             }
-            else if (Input.GetKeyUp(KeyCode.E))
+            else if (Input.GetButtonDown("Interact"))
             {
                 CancelAction();
             }
