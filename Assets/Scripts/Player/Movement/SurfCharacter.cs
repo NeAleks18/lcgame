@@ -29,6 +29,7 @@ namespace Fragsurf.Movement {
         public Transform viewTransform;
         public Transform playerRotationTransform;
         public GameObject Body;
+        [SerializeField] private Camera cam;
 
         [Header ("Crouching setup")]
         public float crouchingHeightMultiplier = 0.5f;
@@ -102,9 +103,10 @@ namespace Fragsurf.Movement {
         private void Start () {
             if (!isLocalPlayer) return;
             Debug.Log("Test");
-            Body.active = false;
-            viewTransform.gameObject.active = true;
+            Body.SetActive(false);
+            viewTransform.gameObject.SetActive(true);
             _controller.playerTransform = playerRotationTransform;
+            cam.tag = "MainCamera";
 
             if (viewTransform != null)
             {
