@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1036562335975534642}
   - component: {fileID: 591285708648551788}
   - component: {fileID: 3065683550632981566}
-  - component: {fileID: 8243286392020256922}
+  - component: {fileID: 2977104758660039102}
+  - component: {fileID: 2945077659363882839}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -105,7 +106,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 3
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0
@@ -242,7 +243,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 1709759094099924874}
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
+--- !u!114 &2945077659363882839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709759094099924874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd9ebf1401392e4bbd47fea32f47642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentBakedListener: {fileID: 0}
+  applyReverb: 1
+  reverbType: 0
+  useAllProbeBatches: 0
+  probeBatches: []
+  mTotalDataSize: 0
+  mProbeDataSizes: 
+  mIdentifier:
+    type: 0
+    variation: 0
+    endpointInfluence:
+      center:
+        x: 0
+        y: 0
+        z: 0
+      radius: 0
+  mProbeBatchesUsed: []
 --- !u!1 &2334731042234383603
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +914,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  _audioSource: {fileID: 1953410220462111477}
+  source: {fileID: 1953410220462111477}
 --- !u!114 &5740372069056123539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -914,7 +945,7 @@ MonoBehaviour:
   directivityValue: 1
   occlusion: 1
   occlusionInput: 0
-  occlusionType: 0
+  occlusionType: 1
   occlusionRadius: 1
   occlusionSamples: 16
   occlusionValue: 1
