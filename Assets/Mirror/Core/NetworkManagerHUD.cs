@@ -14,12 +14,9 @@ namespace Mirror
         public int offsetX;
         public int offsetY;
 
-        void Awake()
-        {
-            manager = GetComponent<NetworkManager>();
-        }
+        private void Awake() => manager = GetComponent<NetworkManager>();
 
-        void OnGUI()
+        private void OnGUI()
         {
             // If this width is changed, also change offsetX in GUIConsole::OnGUI
             int width = 300;
@@ -47,7 +44,7 @@ namespace Mirror
             GUILayout.EndArea();
         }
 
-        void StartButtons()
+        private void StartButtons()
         {
             if (!NetworkClient.active)
             {
@@ -103,7 +100,7 @@ namespace Mirror
             }
         }
 
-        void StatusLabels()
+        private void StatusLabels()
         {
             // host mode
             // display separately because this always confused people:
@@ -126,7 +123,7 @@ namespace Mirror
             }
         }
 
-        void StopButtons()
+        private void StopButtons()
         {
             if (NetworkServer.active && NetworkClient.isConnected)
             {
