@@ -29,7 +29,7 @@ public class MenuHandler : MonoBehaviour
 
     private CustomNetworkManager _networkmanager;
 
-    private void Awake() => _networkmanager = FindObjectOfType<CustomNetworkManager>();
+    private void Awake() => _networkmanager = NetworkManager.singleton.GetComponent<CustomNetworkManager>();
 
     private void OnEnable()
     {
