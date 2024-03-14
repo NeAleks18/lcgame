@@ -1,0 +1,11 @@
+Key,English,Russian
+Menu.Title.Multiplayer,Multiplayer Menu,Мультиплеер Меню
+Menu.Button.Multiplayer,Multiplayer,Мультиплеер
+Menu.Button.Settings,Settings,Настройки
+Menu.Button.Quit,Quit,Выйти
+Menu.Multiplayer.Button.Host,Host,Хост
+Menu.Multiplayer.Button.Connect,Connect,Присоеденится
+Menu.Button.Back,Back,Назад
+Menu.Language.Header,Language,Язык
+Menu.Multiplayer.AttemptText,Trying to join the session!,Попытка присоеденится к сессии!
+Menu.Multiplayer.CancelAttempt,Cancel Connect,Отмена
