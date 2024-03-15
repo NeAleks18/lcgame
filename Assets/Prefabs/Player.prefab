@@ -232,6 +232,7 @@ MonoBehaviour:
   mainCamera: {fileID: 1036562335975534642}
   ActionGameObject: {fileID: 3692549862665416178}
   ActionSlider: {fileID: 6304642087381376702}
+  Inventory: {fileID: 0}
 --- !u!114 &2945077659363882839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,7 +600,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.75
+  m_fontSize: 58.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -805,6 +806,7 @@ GameObject:
   - component: {fileID: 2352217413525080642}
   - component: {fileID: 5740372069056123539}
   - component: {fileID: 1953410220462111477}
+  - component: {fileID: 3339132377415049747}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -968,7 +970,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7842014611094111759}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59c3684b22f00604a97bb68037fcf4cd, type: 3}
   m_Name: 
@@ -1139,6 +1141,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3339132377415049747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842014611094111759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adcf898a89ec20f458254318a871b016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Slots: 3
+  list: []
 --- !u!1 &8426063994287584366
 GameObject:
   m_ObjectHideFlags: 0

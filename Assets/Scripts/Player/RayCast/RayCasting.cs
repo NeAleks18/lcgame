@@ -16,7 +16,12 @@ public class RayCasting : MonoBehaviour
     [SerializeField]
     private Image ActionSlider;
 
-    private IInteractable InteractObject;
+    [Header("Inventory")]
+    [SerializeField]
+    private  GameObject Inventory;
+
+    private IInteractable Interact;
+    private GameObject InteractObject;
     private bool AddingSlider = false;
     private bool toggleEnum = false;
 
@@ -43,9 +48,9 @@ public class RayCasting : MonoBehaviour
             {
                 AddingSlider = true;
                 ActionGameObject.SetActive(true);
-                InteractObject = hit.collider.gameObject.GetComponent<IInteractable>();
+                Interact = hit.collider.gameObject.GetComponent<IInteractable>();
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (Input.GetButtonUp("Interact"))
             {
                 CancelAction();
             }
@@ -60,9 +65,9 @@ public class RayCasting : MonoBehaviour
 
     private IEnumerator Repeater()
     {
-        while (ActionSlider.fillAmount < 1 && AddingSlider && InteractObject != null)
+        while (ActionSlider.fillAmount < 1 && AddingSlider && Interact != null)
         {
-            ActionSlider.fillAmount += 0.01f / (float)InteractObject.TimeToUse;
+            ActionSlider.fillAmount += 0.01f / (float)Interact.TimeToUse;
             yield return new WaitForSeconds(0.01f);
         }
     }
@@ -75,16 +80,17 @@ public class RayCasting : MonoBehaviour
             StartCoroutine(Repeater());
         }
 
-        if (ActionSlider.fillAmount >= 1 && InteractObject != null)
+        if (ActionSlider.fillAmount >= 1 && Interact != null)
         {
-            InteractObject.Interact();
+            if (Interact.IsScrap) Inventory.GetComponent("Inventory").
+                Interact.Interact();
             CancelAction();
         }
     }
 
     private void CancelAction()
     {
-        InteractObject = null;
+        Interact = null;
         toggleEnum = false;
         AddingSlider = false;
         ActionSlider.fillAmount = 0;
