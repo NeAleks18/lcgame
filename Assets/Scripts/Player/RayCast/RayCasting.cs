@@ -1,4 +1,5 @@
 using Mechanics.Interactable;
+using Mechanics.Inventory;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ public class RayCasting : MonoBehaviour
 
     [Header("Inventory")]
     [SerializeField]
-    private  GameObject Inventory;
+    private Inventory Inventory;
 
     private IInteractable Interact;
     private GameObject InteractObject;
@@ -35,7 +36,7 @@ public class RayCasting : MonoBehaviour
             CancelAction();
             return;
         }
-
+        
         if (hit.collider == null)
         {
             CancelAction();
@@ -48,7 +49,8 @@ public class RayCasting : MonoBehaviour
             {
                 AddingSlider = true;
                 ActionGameObject.SetActive(true);
-                Interact = hit.collider.gameObject.GetComponent<IInteractable>();
+                InteractObject = hit.collider.gameObject;
+                Interact = InteractObject.GetComponent<IInteractable>();
             }
             else if (Input.GetButtonUp("Interact"))
             {
@@ -82,8 +84,8 @@ public class RayCasting : MonoBehaviour
 
         if (ActionSlider.fillAmount >= 1 && Interact != null)
         {
-            if (Interact.IsScrap) Inventory.GetComponent("Inventory").
-                Interact.Interact();
+            if (Interact.IsScrap && Inventory.getItem(Inventory.CurrentSlot) == null) Inventory.addItem(InteractObject, Inventory.CurrentSlot);
+            Interact.Interact();
             CancelAction();
         }
     }
