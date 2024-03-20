@@ -11,11 +11,11 @@ namespace Mechanics.Inventory
         {
             if(Input.GetAxis("Mouse ScrollWheel") != 0)
             {
-                Inventory.CurrentSlot += (short)Input.GetAxis("Mouse ScrollWheel");
+                Inventory.CurrentSlot += (short)(Input.GetAxis("Mouse ScrollWheel")*10);
                 switch (Inventory.CurrentSlot)
                 {
-                case > Inventory.slots:
-                        Inventory.CurrentSlot = 1;
+                case > Inventory.slots-1:
+                        Inventory.CurrentSlot = 0;
                         break;
                 case < 0:
                         Inventory.CurrentSlot = Inventory.slots - 1;

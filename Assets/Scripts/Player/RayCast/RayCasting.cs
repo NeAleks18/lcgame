@@ -58,7 +58,7 @@ public class RayCasting : MonoBehaviour
             }
         }
         else
-        {
+        { 
             CancelAction();
         }
 
@@ -84,8 +84,19 @@ public class RayCasting : MonoBehaviour
 
         if (ActionSlider.fillAmount >= 1 && Interact != null)
         {
-            if (Interact.IsScrap && Inventory.getItem(Inventory.CurrentSlot) == null) Inventory.addItem(InteractObject, Inventory.CurrentSlot);
-            Interact.Interact();
+            switch (Interact.Type)
+            {
+                case "Scrap":
+                    if (Inventory.getItem(Inventory.CurrentSlot) == null)
+                    {
+                        Inventory.addItem(InteractObject, Inventory.CurrentSlot);
+                        Interact.Interact();
+                    }
+                    break;
+                case "Sputnik":
+                    Interact.Interact();
+                    break;
+            }
             CancelAction();
         }
     }

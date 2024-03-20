@@ -7,7 +7,7 @@ namespace Mechanics.Interactable
     {
         private void Awake()
         {
-            IsScrap = true;
+            Type = "Scrap";
             TimeToUse = 1f;
         }
         public override void Interact()

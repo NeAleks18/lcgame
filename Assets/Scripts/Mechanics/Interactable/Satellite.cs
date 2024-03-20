@@ -28,6 +28,7 @@ namespace Mechanics.Interactable
 
         private void Awake()
         {
+            Type = "Sputnik";
             TimeToUse = 10f;
         }
 
