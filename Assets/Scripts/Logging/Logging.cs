@@ -5,19 +5,22 @@ using UnityEngine;
 
 public class Logging : MonoBehaviour
 {
+
     public static Logging instance { get; private set; }
 
     private DiscordWebhookAPI api;
 
+    private string Name = "Unknown";
+
     public Task Log(DiscordWebhookAPI webhookAPI, string log, bool getmsgdata = false)
     {
-        webhookAPI.SendMessage(false, $"[Log] {DateTime.Now.ToString("h:mm:ss tt")} {log}", SteamClient.Name, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false, getmsgdata);
+        webhookAPI.SendMessage(false, $"[Log] {DateTime.Now.ToString("h:mm:ss tt")} {log}", Name, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false, getmsgdata);
         return Task.CompletedTask;
     }
 
     private Task ErrorLog(DiscordWebhookAPI webhookAPI, string errorlog)
     {
-        webhookAPI.SendMessage(false, $"[ERROR] {DateTime.Now.ToString("h:mm:ss tt")} {errorlog}", SteamClient.Name, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false);
+        webhookAPI.SendMessage(false, $"[ERROR] {DateTime.Now.ToString("h:mm:ss tt")} {errorlog}", Name, "https://cdn.discordapp.com/avatars/1026084150895202385/de808d42737bc91d34812c06d0e887ac.png", false);
         return Task.CompletedTask;
     }
 
@@ -65,6 +68,16 @@ public class Logging : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         // Initialize
+
+        try
+        {
+            Name = SteamClient.Name;
+        }
+        catch
+        {
+            Debug.LogError("Steam Closed");
+        }
+
         Log(api, $"Build Pre-Alpha, {Screen.currentResolution}, GPU: {SystemInfo.graphicsDeviceName}, CPU: {SystemInfo.processorType}, OS: {SystemInfo.operatingSystem}, RAM Available: {SystemInfo.systemMemorySize}");
     }
 }

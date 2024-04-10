@@ -955,7 +955,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7842014611094111759}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78d47b5cf52468245a6c0d071523b507, type: 3}
   m_Name: 
@@ -1154,10 +1154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adcf898a89ec20f458254318a871b016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  list:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  inventory: []
   CurrentSlot: 0
 --- !u!114 &7847683007949822948
 MonoBehaviour:
@@ -1184,6 +1184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab36b4f378975f448b36484a03d5688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   Inventory: {fileID: 2145795734675871133}
   moveDistance: 2
 --- !u!1 &8426063994287584366

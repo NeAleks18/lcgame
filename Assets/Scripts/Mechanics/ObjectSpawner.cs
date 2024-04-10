@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using Mirror;
 
-public class ScrapSpawner : MonoBehaviour
+public class ObjectSpawner : NetworkBehaviour
 {
     public GameObject[] SpawnPoints;
     public GameObject[] ScrapObjects;
@@ -8,6 +9,9 @@ public class ScrapSpawner : MonoBehaviour
 
     void Start()
     {
+        if (!isServer) return;
+
+        Debug.Log("gg");
 
         bool[] usedSpawnPoints = new bool[SpawnPoints.Length];
 
@@ -18,12 +22,13 @@ public class ScrapSpawner : MonoBehaviour
             {
                 spawnPointIndex = Random.Range(0, SpawnPoints.Length);
             } while (usedSpawnPoints[spawnPointIndex]);
-
+            
             usedSpawnPoints[spawnPointIndex] = true;
 
             GameObject scrapObject = ScrapObjects[Random.Range(0, ScrapObjects.Length)];
 
-            Instantiate(scrapObject, SpawnPoints[spawnPointIndex].transform.position, Quaternion.identity);
+            GameObject obj =  Instantiate(scrapObject, SpawnPoints[spawnPointIndex].transform.position, Quaternion.identity);
+            NetworkServer.Spawn(obj);
         }
         gameObject.SetActive(false);
     }

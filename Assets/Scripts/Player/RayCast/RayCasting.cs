@@ -84,19 +84,20 @@ public class RayCasting : MonoBehaviour
 
         if (ActionSlider.fillAmount >= 1 && Interact != null)
         {
-            switch (Interact.Type)
+            /*switch (Interact.Type)
             {
                 case "Scrap":
                     if (Inventory.getItem(Inventory.CurrentSlot) == null)
                     {
-                        Inventory.addItem(InteractObject, Inventory.CurrentSlot);
+                        //Inventory.addItem(InteractObject.GetComponent<Item>(), Inventory.CurrentSlot);
                         Interact.Interact();
                     }
                     break;
                 case "Sputnik":
                     Interact.Interact();
                     break;
-            }
+            }*/
+            Interact.Interact();
             CancelAction();
         }
     }

@@ -1,26 +1,38 @@
-﻿using System.Collections;
+﻿using Mirror;
 using UnityEngine;
 using Mechanics.Inventory;
 
-    public class ItemDrop : MonoBehaviour
-    {
+    public class ItemDrop : NetworkBehaviour
+{
     [SerializeField]
     public Inventory Inventory;
 
     public float moveDistance;
 
-    private GameObject Object;
+    private Item Item;
     void Update()
     {
+        if (!isLocalPlayer) return;
         if (Input.GetButtonDown("Drop"))
         {
-            Object = Inventory.getItem(Inventory.CurrentSlot);
-            if (Object != null)
+            if (Inventory.getItem(Inventory.CurrentSlot) != new Item())
             {
-                Inventory.deleteItem(Inventory.CurrentSlot);
-                Object.transform.position = gameObject.transform.position + gameObject.transform.forward * moveDistance;
-                Object.SetActive(true);
+                dropItem();
             }
         }
     }
+    [Command]
+    public void dropItem()
+    {
+        if (Inventory.getItem(Inventory.CurrentSlot) != new Item())
+        {
+            Item = Inventory.getItem(Inventory.CurrentSlot);
+            if (Item._model != null)
+            {
+                Inventory.deleteItem(Inventory.getItem(Inventory.CurrentSlot));
+                GameObject obj = Instantiate(Item._model, gameObject.transform.position + gameObject.transform.forward * moveDistance, Quaternion.identity);
+                NetworkServer.Spawn(obj);
+            }
+        }
     }
+}

@@ -1,26 +1,33 @@
 using UnityEngine;
+using System.Collections.Generic;
+using Mirror;
 
 namespace Mechanics.Inventory
 {
-    public class Inventory : MonoBehaviour
+    public class Inventory : NetworkBehaviour
     {
-        public const short slots = 3;
         [SerializeField]
-        private GameObject[] list = new GameObject[slots];
+        public List<Item> inventory = new List<Item>();
         [SerializeField]
-        public short CurrentSlot;
+        public int CurrentSlot;
+        public static Inventory Instance;
 
-        public void addItem(GameObject obj, short slot)
+        private void Start()
         {
-            list[slot] = obj;
+            if (isLocalPlayer) Instance = this;
+            Debug.Log(inventory.Count);
         }
-        public void deleteItem(short slot)
+        public void addItem(Item obj)
         {
-            list[slot] = null;
+            inventory.Add(obj);
         }
-        public GameObject getItem(short slot)
+        public void deleteItem(Item obj)
         {
-            return list[slot];
+            inventory.Remove(obj);
+        }
+        public Item getItem(int slot)
+        {
+            return inventory[slot];
         }
     }
 
