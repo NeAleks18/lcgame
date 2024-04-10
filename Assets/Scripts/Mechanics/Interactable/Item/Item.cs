@@ -1,6 +1,9 @@
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(fileName = "Item", menuName = "GamePlay/Inventory/Item",order =1)]
+
+[Serializable]
 
 public class Item : ScriptableObject
 {

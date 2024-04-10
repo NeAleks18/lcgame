@@ -15,7 +15,7 @@ using Mechanics.Inventory;
         if (!isLocalPlayer) return;
         if (Input.GetButtonDown("Drop"))
         {
-            if (Inventory.getItem(Inventory.CurrentSlot) != new Item())
+            if (Inventory.getItem(Inventory.CurrentSlot)._size == ItemSize.Big)
             {
                 dropItem();
             }
@@ -24,8 +24,6 @@ using Mechanics.Inventory;
     [Command]
     public void dropItem()
     {
-        if (Inventory.getItem(Inventory.CurrentSlot) != new Item())
-        {
             Item = Inventory.getItem(Inventory.CurrentSlot);
             if (Item._model != null)
             {
@@ -33,6 +31,6 @@ using Mechanics.Inventory;
                 GameObject obj = Instantiate(Item._model, gameObject.transform.position + gameObject.transform.forward * moveDistance, Quaternion.identity);
                 NetworkServer.Spawn(obj);
             }
-        }
+    
     }
 }

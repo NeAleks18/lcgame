@@ -9,9 +9,7 @@ public class ObjectSpawner : NetworkBehaviour
 
     void Start()
     {
-        if (!isServer) return;
-
-        Debug.Log("gg");
+        if (!isServer) GameObject.Destroy(gameObject);
 
         bool[] usedSpawnPoints = new bool[SpawnPoints.Length];
 
