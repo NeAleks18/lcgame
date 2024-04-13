@@ -7,9 +7,9 @@ public class ObjectSpawner : NetworkBehaviour
     public GameObject[] ScrapObjects;
     public int SpawnCount;
 
-    void Start()
+    public override void OnStartServer()
     {
-        if (!isServer) GameObject.Destroy(gameObject);
+        base.OnStartServer();
 
         bool[] usedSpawnPoints = new bool[SpawnPoints.Length];
 
@@ -20,14 +20,13 @@ public class ObjectSpawner : NetworkBehaviour
             {
                 spawnPointIndex = Random.Range(0, SpawnPoints.Length);
             } while (usedSpawnPoints[spawnPointIndex]);
-            
+
             usedSpawnPoints[spawnPointIndex] = true;
 
             GameObject scrapObject = ScrapObjects[Random.Range(0, ScrapObjects.Length)];
 
-            GameObject obj =  Instantiate(scrapObject, SpawnPoints[spawnPointIndex].transform.position, Quaternion.identity);
+            GameObject obj = Instantiate(scrapObject, SpawnPoints[spawnPointIndex].transform.position, Quaternion.identity);
             NetworkServer.Spawn(obj);
         }
-        gameObject.SetActive(false);
     }
 }

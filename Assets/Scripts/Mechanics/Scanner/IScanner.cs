@@ -3,7 +3,7 @@ namespace Mechanics.Scanner
     public interface IScanner
     {
         // Data
-        ScannerData Data { get; }
+        Item Item { get; }
         TMPro.TextMeshProUGUI ForName { get; }
         TMPro.TextMeshProUGUI ForCost { get; }
         UnityEngine.GameObject Image { get; }

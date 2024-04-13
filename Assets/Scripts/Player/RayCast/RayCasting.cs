@@ -1,11 +1,12 @@
 using Mechanics.Interactable;
 using Mechanics.Inventory;
 using System.Collections;
+using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
 using Ray = UnityEngine.Ray;
 
-public class RayCasting : MonoBehaviour
+public class RayCasting : NetworkBehaviour
 {
     [Header("RayCast Settings")]
     [SerializeField]

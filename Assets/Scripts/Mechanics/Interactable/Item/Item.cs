@@ -13,6 +13,7 @@ public class Item : ScriptableObject
     public ItemSize _size;
     public Sprite _sprite;
     public GameObject _model;
+    public int ScanDistance = 4;
 }
 
 public enum ItemType

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760ef1f80ca4656498bb90264a8dfd59, type: 3}
   m_Name: Item 01
   m_EditorClassIdentifier: 
-  _name: Item1
+  _name: Tool
   _description: BIG ITEM
-  _type: 3
+  _type: 0
   _size: 2
   _sprite: {fileID: 21300000, guid: 9e7771f048fdf40839b6ee9dbacad67c, type: 3}
-  _model: {fileID: 8422232408243278783, guid: a5b2a1c2812ba1b409955a65d3857f47, type: 3}
+  _model: {fileID: 2916396011352214142, guid: 9fd560235cfb4c743baaa029ca3d3d0a, type: 3}
+  ScanDistance: 4

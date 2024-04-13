@@ -2,14 +2,13 @@
 using UnityEngine;
 using Mechanics.Inventory;
 
-    public class ItemDrop : NetworkBehaviour
+public class ItemDrop : NetworkBehaviour
 {
-    [SerializeField]
-    public Inventory Inventory;
-
+    [SerializeField] private Inventory Inventory;
     public float moveDistance;
 
-    private Item Item;
+    private Item item;
+
     void Update()
     {
         if (!isLocalPlayer) return;
@@ -17,20 +16,20 @@ using Mechanics.Inventory;
         {
             if (Inventory.getItem(Inventory.CurrentSlot)._size == ItemSize.Big)
             {
-                dropItem();
+                CmdDropItem();
             }
         }
     }
+
     [Command]
-    public void dropItem()
+    private void CmdDropItem()
     {
-            Item = Inventory.getItem(Inventory.CurrentSlot);
-            if (Item._model != null)
-            {
-                Inventory.deleteItem(Inventory.getItem(Inventory.CurrentSlot));
-                GameObject obj = Instantiate(Item._model, gameObject.transform.position + gameObject.transform.forward * moveDistance, Quaternion.identity);
-                NetworkServer.Spawn(obj);
-            }
-    
+        item = Inventory.getItem(Inventory.CurrentSlot);
+        if (item._model != null)
+        {
+            Inventory.deleteItem(item);
+            GameObject obj = Instantiate(item._model, gameObject.transform.position + gameObject.transform.forward * moveDistance, Quaternion.identity);
+            NetworkServer.Spawn(obj);
+        }
     }
 }

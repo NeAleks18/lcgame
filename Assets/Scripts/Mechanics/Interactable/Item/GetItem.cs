@@ -1,19 +1,34 @@
-﻿using UnityEngine;
+﻿using Mirror;
+using UnityEngine;
+using Mechanics.Inventory;
+
 namespace Mechanics.Interactable
 {
     public class GetItem : BaseInteractable
     {
         public Item item;
-        private void Awake()
+
+        public override void OnStartClient()
         {
+            base.OnStartClient();
             Type = "Item";
             TimeToUse = 1f;
+
         }
 
+
+        [ClientRpc]
         public override void Interact()
         {
-            Inventory.Inventory.Instance.addItem(item);
-            GameObject.Destroy(gameObject);
+            CmdInteract();
         }
+
+        [Command]
+        public void CmdInteract()
+        {
+            Inventory.Inventory.Instance.addItem(item);
+            NetworkServer.Destroy(gameObject);
+        }
+
     }
 }

@@ -101,7 +101,11 @@ namespace Fragsurf.Movement {
 		}
 
         private void Start () {
-            if (!isLocalPlayer) return;
+            if (!isLocalPlayer)
+            {
+                cam.gameObject.SetActive(false);
+                return;
+            }
             cam.tag = "MainCamera";
             //Debug.Log("Test");
             Body.SetActive(false);

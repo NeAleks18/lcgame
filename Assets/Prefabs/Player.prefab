@@ -753,7 +753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4764232531193780800
 Transform:
   m_ObjectHideFlags: 0
@@ -1157,6 +1157,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  resources: []
   inventory: []
   CurrentSlot: 0
 --- !u!114 &7847683007949822948
@@ -1171,7 +1172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0359b5d4337344e92337450c726523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Inventory: {fileID: 2145795734675871133}
 --- !u!114 &6447764353563053064
 MonoBehaviour:
   m_ObjectHideFlags: 0
