@@ -228,10 +228,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4cd41cc4d139e40865d6c13c21ce53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   mainCamera: {fileID: 1036562335975534642}
   ActionGameObject: {fileID: 3692549862665416178}
   ActionSlider: {fileID: 6304642087381376702}
-  Inventory: {fileID: 2145795734675871133}
+  Player: {fileID: 7842014611094111759}
 --- !u!114 &2945077659363882839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,7 +602,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 103.95
+  m_fontSize: 58.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1156,7 +1159,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncDirection: 0
   syncMode: 0
-  syncInterval: 0
+  syncInterval: 0.1
+  items: []
+  AddedItemID: 0
   resources: []
   inventory: []
   CurrentSlot: 0
@@ -1172,6 +1177,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0359b5d4337344e92337450c726523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  inventory: {fileID: 2145795734675871133}
+  drop: {fileID: 6447764353563053064}
 --- !u!114 &6447764353563053064
 MonoBehaviour:
   m_ObjectHideFlags: 0

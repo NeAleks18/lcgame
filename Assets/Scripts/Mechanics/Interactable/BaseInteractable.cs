@@ -1,4 +1,5 @@
 using Mirror;
+using UnityEngine;
 
 namespace Mechanics.Interactable
 {
@@ -8,8 +9,7 @@ namespace Mechanics.Interactable
         public string Type { get; protected set; } = "";
 
 
-        [ClientRpc]
-        public virtual void Interact()
+        public virtual void Interact(GameObject playerObject)
         {
 
         }

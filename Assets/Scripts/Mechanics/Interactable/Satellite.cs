@@ -8,6 +8,8 @@ namespace Mechanics.Interactable
         None,
         Broken
     }
+    
+    
 
     // Main Class
     public class Satellite : BaseInteractable
@@ -42,9 +44,9 @@ namespace Mechanics.Interactable
             }
         }
 
-        public override void Interact()
+        public override void Interact(GameObject player)
         {
-            base.Interact();
+            base.Interact(player);
             Repair();
         }
     }

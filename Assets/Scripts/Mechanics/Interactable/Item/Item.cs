@@ -4,9 +4,9 @@ using System;
 [CreateAssetMenu(fileName = "Item", menuName = "GamePlay/Inventory/Item",order =1)]
 
 [Serializable]
-
 public class Item : ScriptableObject
 {
+    public int id;
     public string _name;
     [TextArea] public string _description;
     public ItemType _type;

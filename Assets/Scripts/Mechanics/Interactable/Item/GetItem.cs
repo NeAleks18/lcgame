@@ -6,28 +6,20 @@ namespace Mechanics.Interactable
 {
     public class GetItem : BaseInteractable
     {
-        public Item item;
+        [SerializeField]
+        private Item item;
 
         public override void OnStartClient()
         {
             base.OnStartClient();
-            Type = "Item";
             TimeToUse = 1f;
 
         }
 
-
-        [ClientRpc]
-        public override void Interact()
+        public override void Interact(GameObject playerObject)
         {
-            CmdInteract();
-        }
-
-        [Command]
-        public void CmdInteract()
-        {
-            Inventory.Inventory.Instance.addItem(item);
             NetworkServer.Destroy(gameObject);
+            playerObject.GetComponent<Inventory.Inventory>().AddedItemID = (playerObject.GetComponent<Inventory.Inventory>().AddedItemID == item.id) ? 2147483646 : item.id;
         }
 
     }

@@ -2,7 +2,7 @@ using Mechanics.Interactable;
 using Mechanics.Inventory;
 using System.Collections;
 using Mirror;
-using UnityEngine;
+using UnityEngine; 
 using UnityEngine.UI;
 using Ray = UnityEngine.Ray;
 
@@ -18,9 +18,9 @@ public class RayCasting : NetworkBehaviour
     [SerializeField]
     private Image ActionSlider;
 
-    [Header("Inventory")]
+    [Header("Player")]
     [SerializeField]
-    private Inventory Inventory;
+    private GameObject Player;
 
     private IInteractable Interact;
     private GameObject InteractObject;
@@ -70,7 +70,7 @@ public class RayCasting : NetworkBehaviour
     {
         while (ActionSlider.fillAmount < 1 && AddingSlider && Interact != null)
         {
-            ActionSlider.fillAmount += 0.01f / (float)Interact.TimeToUse;
+            ActionSlider.fillAmount += Time.deltaTime * (float)Interact.TimeToUse;
             yield return new WaitForSeconds(0.01f);
         }
     }
@@ -85,22 +85,15 @@ public class RayCasting : NetworkBehaviour
 
         if (ActionSlider.fillAmount >= 1 && Interact != null)
         {
-            /*switch (Interact.Type)
-            {
-                case "Scrap":
-                    if (Inventory.getItem(Inventory.CurrentSlot) == null)
-                    {
-                        //Inventory.addItem(InteractObject.GetComponent<Item>(), Inventory.CurrentSlot);
-                        Interact.Interact();
-                    }
-                    break;
-                case "Sputnik":
-                    Interact.Interact();
-                    break;
-            }*/
-            Interact.Interact();
+            CmdInteract(InteractObject);
             CancelAction();
         }
+    }
+
+    [Command]
+    private void CmdInteract(GameObject InteractObject)
+    {
+        InteractObject.GetComponent<IInteractable>().Interact(Player);
     }
 
     private void CancelAction()

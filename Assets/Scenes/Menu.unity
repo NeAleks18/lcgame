@@ -3227,6 +3227,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LocalizationKey: Menu.Language.Header
+--- !u!1001 &1404208583
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6107466628946643752, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: WebHookID
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107466628946643752, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: WebHookToken
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.667595
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4098763
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.881592
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338793952373446220, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_Name
+      value: DiscordAPI (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338793952373446220, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
 --- !u!1 &1442422269
 GameObject:
   m_ObjectHideFlags: 0
@@ -4939,7 +5008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1492263507425026914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5179,7 +5248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7338793952373446220, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5361,6 +5430,7 @@ SceneRoots:
   - {fileID: 610121511}
   - {fileID: 455280759}
   - {fileID: 4680575513722053067}
+  - {fileID: 1404208583}
   - {fileID: 9147810897599088476}
   - {fileID: 1063723498}
   - {fileID: 2352216521686599256}

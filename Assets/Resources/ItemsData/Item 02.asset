@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760ef1f80ca4656498bb90264a8dfd59, type: 3}
   m_Name: Item 02
   m_EditorClassIdentifier: 
+  id: 3
   _name: Resourse
   _description: too smali..
   _type: 2

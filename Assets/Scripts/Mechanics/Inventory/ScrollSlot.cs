@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mechanics.Inventory;
+using Mirror;
+
 
 namespace Mechanics.Inventory
 {
-    public class ScrollSlot : MonoBehaviour
+    public class ScrollSlot : NetworkBehaviour
     {
-
+        [SerializeField]
+        Inventory inventory;
+        [SerializeField]
+        ItemDrop drop;
         void Update()
         {
-            if(Input.GetAxis("Mouse ScrollWheel") != 0 && Inventory.Instance.inventory.Count > 0) Inventory.Instance.CurrentSlot += (int)(Input.GetAxis("Mouse ScrollWheel")*10);
-            if (Inventory.Instance.CurrentSlot > Inventory.Instance.inventory.Count - 1 && Inventory.Instance.inventory.Count > 0) Inventory.Instance.CurrentSlot = 0;
-            else if (Inventory.Instance.CurrentSlot < 0 && Inventory.Instance.inventory.Count > 0) Inventory.Instance.CurrentSlot = Inventory.Instance.inventory.Count - 1;
+            if (!isLocalPlayer) return;
+            if (Input.GetAxis("Mouse ScrollWheel") != 0 && inventory.inventory.Count > 0)
+            {
+                if (inventory.getItem(inventory.CurrentSlot)._size == ItemSize.Big) drop.DropItem();
+                inventory.CurrentSlot += (int)(Input.GetAxis("Mouse ScrollWheel") * 10);
+            }
+            if (inventory.CurrentSlot > inventory.inventory.Count - 1 && inventory.inventory.Count > 0) inventory.CurrentSlot = 0;
+            else if (inventory.CurrentSlot < 0 && inventory.inventory.Count > 0) inventory.CurrentSlot = inventory.inventory.Count - 1;
         }
     }
 }
