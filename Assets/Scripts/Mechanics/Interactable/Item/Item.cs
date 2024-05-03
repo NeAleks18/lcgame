@@ -14,6 +14,7 @@ public class Item : ScriptableObject
     public Sprite _sprite;
     public GameObject _model;
     public int ScanDistance = 4;
+    public Element[] Elements;
 }
 
 public enum ItemType
@@ -23,4 +24,8 @@ public enum ItemType
 public enum ItemSize
 {
     Small,Medium,Big
+}
+public enum Element
+{
+    Fe,Cu,Al,Mg
 }

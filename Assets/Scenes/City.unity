@@ -2090,7 +2090,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1717029807}
-  m_VersionIndex: 6373
+  m_VersionIndex: 6376
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4167,15 +4167,15 @@ PrefabInstance:
     - target: {fileID: 4091446604175740942, guid: 4cf4c3b66c1e2d544b5e1b01a3469618, type: 3}
       propertyPath: ScrapObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 6453661288231062404, guid: a5b2a1c2812ba1b409955a65d3857f47, type: 3}
+      objectReference: {fileID: 5151766983366116999, guid: 2dc696e706f95f54999e6e9883edf2fb, type: 3}
     - target: {fileID: 4091446604175740942, guid: 4cf4c3b66c1e2d544b5e1b01a3469618, type: 3}
       propertyPath: ScrapObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 2916396011352214142, guid: 9fd560235cfb4c743baaa029ca3d3d0a, type: 3}
+      objectReference: {fileID: 9108011014419793830, guid: c838fff4aac9b1a45b235d3cda6a877e, type: 3}
     - target: {fileID: 4091446604175740942, guid: 4cf4c3b66c1e2d544b5e1b01a3469618, type: 3}
       propertyPath: ScrapObjects.Array.data[2]
       value: 
-      objectReference: {fileID: 1817911948379944729, guid: 72bdd67183b208f43ab09f1025f46df1, type: 3}
+      objectReference: {fileID: 4577362583065083695, guid: f86f93e778d751f4db4d1413fc21f890, type: 3}
     - target: {fileID: 5627841797172115830, guid: 4cf4c3b66c1e2d544b5e1b01a3469618, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
