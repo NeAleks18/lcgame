@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 06c199c479bb2ac4b9baf11b3829cd27
   - enabled: 1
+    path: Assets/Scenes/City.unity
+    guid: e2951e3bcc4a5af4da885cfa9b95c5cc
+  - enabled: 0
     path: Assets/Scenes/Game.unity
     guid: 8c7060fdd389c984e8c95c30e37f38fa
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Visor.unity
     guid: 4a0691565e3175749bbcc8f15307b43a
   m_configObjects:

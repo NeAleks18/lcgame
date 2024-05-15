@@ -4,7 +4,7 @@ namespace Mechanics.Scanner
 {
     public abstract class BaseScannerUI : MonoBehaviour, IScanner
     {
-        [field: SerializeField] public ScannerData Data { get; set; }
+        [field: SerializeField] public Item Item { get; set; }
 
         [field: SerializeField] public TMPro.TextMeshProUGUI ForName { get; set; }
         [field: SerializeField] public TMPro.TextMeshProUGUI ForCost { get; set; }
@@ -18,8 +18,8 @@ namespace Mechanics.Scanner
         // Base
         public virtual void Init()
         {
-            if (ForName != null) ForName.text = Data.NameOfItem;
-            if (ForCost != null) ForCost.text = Data.Cost.ToString();
+            if (ForName != null) ForName.text = Item._name;
+            if (ForCost != null) ForCost.text = Item._description;
             Hide();
         }
 
@@ -28,7 +28,7 @@ namespace Mechanics.Scanner
             if (Camera.main == null) return;
             transform.LookAt(Camera.main.transform.position);
             Distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-            Scale = Mathf.Clamp01(Distance / Data.Distance);
+            Scale = Mathf.Clamp01(Distance / Item.ScanDistance);
             transform.localScale = new Vector3(Scale, Scale, Scale);
         }
 
@@ -62,10 +62,10 @@ namespace Mechanics.Scanner
 
         private void Reset()
         {
-            if (Data != null)
+            if (Item != null)
             {
-                ForName.text = Data.NameOfItem;
-                ForCost.text = Data.Cost.ToString();
+                ForName.text = Item._name;
+                ForCost.text = Item._description;
                 Image = GetComponent<UnityEngine.UI.Image>().gameObject;
             }
         }

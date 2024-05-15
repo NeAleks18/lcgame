@@ -7,7 +7,7 @@ public class PlayerScanner : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Interact"))
+        if (Input.GetButtonDown("Scan"))
         {
             ScannerColider.SetActive(true);
             Debug.Log("turn");

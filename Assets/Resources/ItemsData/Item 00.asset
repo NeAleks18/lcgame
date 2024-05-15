@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760ef1f80ca4656498bb90264a8dfd59, type: 3}
+  m_Name: Item 00
+  m_EditorClassIdentifier: 
+  _name: Scrap
+  _description: Mediun Size
+  _type: 3
+  _size: 1
+  _sprite: {fileID: 21300000, guid: 9e7771f048fdf40839b6ee9dbacad67c, type: 3}
+  _model: {fileID: 6453661288231062404, guid: a5b2a1c2812ba1b409955a65d3857f47, type: 3}
+  ScanDistance: 4

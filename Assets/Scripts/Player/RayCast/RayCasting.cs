@@ -1,10 +1,12 @@
 using Mechanics.Interactable;
+using Mechanics.Inventory;
 using System.Collections;
-using UnityEngine;
+using Mirror;
+using UnityEngine; 
 using UnityEngine.UI;
 using Ray = UnityEngine.Ray;
 
-public class RayCasting : MonoBehaviour
+public class RayCasting : NetworkBehaviour
 {
     [Header("RayCast Settings")]
     [SerializeField]
@@ -16,7 +18,12 @@ public class RayCasting : MonoBehaviour
     [SerializeField]
     private Image ActionSlider;
 
-    private IInteractable InteractObject;
+    [Header("Player")]
+    [SerializeField]
+    private GameObject Player;
+
+    private IInteractable Interact;
+    private GameObject InteractObject;
     private bool AddingSlider = false;
     private bool toggleEnum = false;
 
@@ -30,7 +37,7 @@ public class RayCasting : MonoBehaviour
             CancelAction();
             return;
         }
-
+        
         if (hit.collider == null)
         {
             CancelAction();
@@ -43,15 +50,16 @@ public class RayCasting : MonoBehaviour
             {
                 AddingSlider = true;
                 ActionGameObject.SetActive(true);
-                InteractObject = hit.collider.gameObject.GetComponent<IInteractable>();
+                InteractObject = hit.collider.gameObject;
+                Interact = InteractObject.GetComponent<IInteractable>();
             }
-            else if (Input.GetButtonDown("Interact"))
+            else if (Input.GetButtonUp("Interact"))
             {
                 CancelAction();
             }
         }
         else
-        {
+        { 
             CancelAction();
         }
 
@@ -60,9 +68,9 @@ public class RayCasting : MonoBehaviour
 
     private IEnumerator Repeater()
     {
-        while (ActionSlider.fillAmount < 1 && AddingSlider && InteractObject != null)
+        while (ActionSlider.fillAmount < 1 && AddingSlider && Interact != null)
         {
-            ActionSlider.fillAmount += 0.01f / (float)InteractObject.TimeToUse;
+            ActionSlider.fillAmount += Time.deltaTime * (float)Interact.TimeToUse;
             yield return new WaitForSeconds(0.01f);
         }
     }
@@ -75,16 +83,22 @@ public class RayCasting : MonoBehaviour
             StartCoroutine(Repeater());
         }
 
-        if (ActionSlider.fillAmount >= 1 && InteractObject != null)
+        if (ActionSlider.fillAmount >= 1 && Interact != null)
         {
-            InteractObject.Interact();
+            CmdInteract(InteractObject);
             CancelAction();
         }
     }
 
+    [Command]
+    private void CmdInteract(GameObject InteractObject)
+    {
+        InteractObject.GetComponent<IInteractable>().Interact(Player);
+    }
+
     private void CancelAction()
     {
-        InteractObject = null;
+        Interact = null;
         toggleEnum = false;
         AddingSlider = false;
         ActionSlider.fillAmount = 0;

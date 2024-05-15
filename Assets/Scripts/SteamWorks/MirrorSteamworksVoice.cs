@@ -106,7 +106,7 @@ public class MirrorSteamworksVoice : NetworkBehaviour
         for (int i = 0; i < iSize; i += 2)
         {
             // insert converted float to buffer
-            float converted = (short)(uncompressed[i] | uncompressed[i + 1] << 8) / 32767.0f;
+            float converted = (int)(uncompressed[i] | uncompressed[i + 1] << 8) / 32767.0f;
             clipBuffer[dataReceived] = converted;
 
             // buffer loop

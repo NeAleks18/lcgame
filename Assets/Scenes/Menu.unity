@@ -1101,6 +1101,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350586492}
   m_CullTransparentMesh: 1
+--- !u!1 &455280756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 455280759}
+  - component: {fileID: 455280758}
+  - component: {fileID: 455280757}
+  - component: {fileID: 455280760}
+  m_Layer: 0
+  m_Name: NetworkManager (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &455280757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455280756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 7777
+  DualMode: 1
+  NoDelay: 1
+  Interval: 10
+  Timeout: 10000
+  RecvBufferSize: 7361536
+  SendBufferSize: 7361536
+  FastResend: 2
+  ReceiveWindowSize: 4096
+  SendWindowSize: 4096
+  MaxRetransmit: 40
+  MaximizeSocketBuffers: 1
+  ReliableMaxMessageSize: 297433
+  UnreliableMaxMessageSize: 1195
+  debugLog: 0
+  statisticsGUI: 0
+  statisticsLog: 0
+--- !u!114 &455280758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455280756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
+  runInBackground: 1
+  headlessStartMode: 1
+  editorAutoStart: 0
+  sendRate: 60
+  autoStartServerBuild: 0
+  autoConnectClientBuild: 0
+  offlineScene: Assets/Scenes/Menu.unity
+  onlineScene: Assets/Scenes/City.unity
+  transport: {fileID: 455280757}
+  networkAddress: localhost
+  maxConnections: 100
+  disconnectInactiveConnections: 0
+  disconnectInactiveTimeout: 60
+  authenticator: {fileID: 0}
+  playerPrefab: {fileID: 7842014611094111759, guid: e98783d0e6a67584598ab59e2a6a9b64, type: 3}
+  autoCreatePlayer: 1
+  playerSpawnMethod: 0
+  spawnPrefabs:
+  - {fileID: 2833921163542957290, guid: c21b553aad9439a4a9263f83c015fb2c, type: 3}
+  - {fileID: 5636943309340789921, guid: 998281f972f377a4e93bcf41ec169972, type: 3}
+  - {fileID: 4577362583065083695, guid: f86f93e778d751f4db4d1413fc21f890, type: 3}
+  - {fileID: 5151766983366116999, guid: 2dc696e706f95f54999e6e9883edf2fb, type: 3}
+  - {fileID: 9108011014419793830, guid: c838fff4aac9b1a45b235d3cda6a877e, type: 3}
+  exceptionsDisconnect: 1
+  snapshotSettings:
+    bufferTimeMultiplier: 2
+    bufferLimit: 32
+    catchupNegativeThreshold: -1
+    catchupPositiveThreshold: 1
+    catchupSpeed: 0.019999999552965164
+    slowdownSpeed: 0.03999999910593033
+    driftEmaDuration: 1
+    dynamicAdjustment: 1
+    dynamicAdjustmentTolerance: 1
+    deliveryTimeEmaDuration: 2
+  evaluationMethod: 0
+  evaluationInterval: 3
+  timeInterpolationGui: 0
+--- !u!4 &455280759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455280756}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &455280760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455280756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 0
+  offsetY: 0
 --- !u!1 &531060349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,7 +1420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.037, y: 0.44400004}
   m_AnchorMax: {x: 0.1824726, y: 0.53523946}
-  m_AnchoredPosition: {x: 0.7999878, y: 0.12851906}
+  m_AnchoredPosition: {x: 0.7999878, y: 0.12851715}
   m_SizeDelta: {x: -0.8999939, y: 0.25699997}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &551324907
@@ -1469,7 +1597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &610121509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,7 +1666,7 @@ MonoBehaviour:
   autoStartServerBuild: 0
   autoConnectClientBuild: 0
   offlineScene: Assets/Scenes/Menu.unity
-  onlineScene: Assets/Scenes/Game.unity
+  onlineScene: Assets/Scenes/City.unity
   transport: {fileID: 610121512}
   networkAddress: localhost
   maxConnections: 100
@@ -1742,7 +1870,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.95
+  m_fontSize: 32.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2849,7 +2977,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 37.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3098,6 +3226,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LocalizationKey: Menu.Language.Header
+--- !u!1001 &1404208583
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6107466628946643752, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: WebHookID
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107466628946643752, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: WebHookToken
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.667595
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4098763
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.881592
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266130030842599714, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338793952373446220, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_Name
+      value: DiscordAPI (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7338793952373446220, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
 --- !u!1 &1442422269
 GameObject:
   m_ObjectHideFlags: 0
@@ -4431,7 +4628,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.037, y: 0.44400004}
   m_AnchorMax: {x: 0.1824726, y: 0.53523946}
-  m_AnchoredPosition: {x: 0.7999878, y: 0.12851906}
+  m_AnchoredPosition: {x: 0.7999878, y: 0.12851715}
   m_SizeDelta: {x: -0.8999939, y: 0.25699997}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1992735651
@@ -4549,7 +4746,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 37.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4678,7 +4875,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 103.05
+  m_fontSize: 121.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4810,7 +5007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1492263507425026914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5048,6 +5245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DiscordAPI
       objectReference: {fileID: 0}
+    - target: {fileID: 7338793952373446220, guid: 4feb9bc7c1979eb4ca18b07f439e18b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5164,7 +5365,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 102.95
+  m_fontSize: 120.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5226,7 +5427,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 610121511}
+  - {fileID: 455280759}
   - {fileID: 4680575513722053067}
+  - {fileID: 1404208583}
   - {fileID: 9147810897599088476}
   - {fileID: 1063723498}
   - {fileID: 2352216521686599256}
