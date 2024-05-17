@@ -813,7 +813,7 @@ GameObject:
   - component: {fileID: 6447764353563053064}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1162,7 +1162,9 @@ MonoBehaviour:
   syncInterval: 0.1
   items: []
   AddedItemID: 0
-  resources: []
+  resources:
+  - item: {fileID: 11400000, guid: 28b25c2c7bd96184db96a3899a223566, type: 2}
+    count: 3
   inventory: []
   CurrentSlot: 0
 --- !u!114 &7847683007949822948

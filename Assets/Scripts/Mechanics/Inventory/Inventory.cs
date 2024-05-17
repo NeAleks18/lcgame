@@ -11,7 +11,7 @@ namespace Mechanics.Inventory
         [SerializeField]
         Item[] items;
 
-        [SyncVar(hook = nameof(addItem))]
+        [SyncVar(hook = nameof(AddItem))]
         public int AddedItemID;
         
         [SerializeField]
@@ -27,7 +27,7 @@ namespace Mechanics.Inventory
         {
             items = Resources.LoadAll<Item>("");
         }
-        public void addItem(int oldID , int newID)
+        public void AddItem(int oldID , int newID)
         {
             Item obj;
 
@@ -65,11 +65,28 @@ namespace Mechanics.Inventory
             }
 
         }
-        public void deleteItem(Item obj)
+        public void DeleteItem(Item obj)
         {
-            inventory.Remove(obj);
+            
+
+            if (obj._size == ItemSize.Medium || obj._size == ItemSize.Big)
+            {
+                inventory.Remove(obj);
+            }
+            else if (obj._size == ItemSize.Small)
+            {
+                for (int i = 0; i < resources.Count; i++)
+                {
+                    if (resources[i].item == obj)
+                    {
+                        resources[i].count--;
+                        if (resources[i].count <= 0) { resources.Remove(resources[i]); }
+                    }
+                }
+
+            }
         }
-        public Item getItem(int slot)
+        public Item GetItem(int slot)
         {
             if (slot >= 0 && slot <= inventory.Count)
             {
@@ -80,6 +97,32 @@ namespace Mechanics.Inventory
                 Debug.LogError("Index out of range: " + slot);
                 return null; 
             }
+        }
+
+        public bool CheckItem(Item obj)
+        {
+            if (obj == null) return false;
+            
+            if (obj._size == ItemSize.Medium || obj._size == ItemSize.Big)
+            {
+                return inventory.Contains(obj);
+            }
+            else if (obj._size == ItemSize.Small)
+            {
+                for (int i = 0; i < resources.Count; i++)
+                {
+                    if (resources[i].item == obj)
+                    {
+                        return true;
+                    }
+                    else if (i == resources.Count - 1 && resources[i].item != obj)
+                    {
+                        return false;
+                    }
+                }
+                
+            }
+            return false;
         }
     }
 

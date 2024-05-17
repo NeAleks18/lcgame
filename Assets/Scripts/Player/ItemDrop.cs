@@ -20,11 +20,11 @@ public class ItemDrop : NetworkBehaviour
 
     public void DropItem()
     {
-        if (Inventory.getItem(Inventory.CurrentSlot)._size == ItemSize.Big)
+        if (Inventory.GetItem(Inventory.CurrentSlot)._size == ItemSize.Big)
         {
-            item = Inventory.getItem(Inventory.CurrentSlot);
+            item = Inventory.GetItem(Inventory.CurrentSlot);
             CmdDropItem(isServer);
-            Inventory.deleteItem(item);
+            Inventory.DeleteItem(item);
         }
     }
 
@@ -33,8 +33,8 @@ public class ItemDrop : NetworkBehaviour
     {
         if (!Server)
         {
-            item = Inventory.getItem(Inventory.CurrentSlot);
-            Inventory.deleteItem(item);
+            item = Inventory.GetItem(Inventory.CurrentSlot);
+            Inventory.DeleteItem(item);
         }
         if (item != null)
         {

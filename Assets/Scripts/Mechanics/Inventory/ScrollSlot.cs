@@ -17,7 +17,7 @@ namespace Mechanics.Inventory
             if (!isLocalPlayer) return;
             if (Input.GetAxis("Mouse ScrollWheel") != 0 && inventory.inventory.Count > 0)
             {
-                if (inventory.getItem(inventory.CurrentSlot)._size == ItemSize.Big) drop.DropItem();
+                if (inventory.GetItem(inventory.CurrentSlot)._size == ItemSize.Big) drop.DropItem();
                 inventory.CurrentSlot += (int)(Input.GetAxis("Mouse ScrollWheel") * 10);
             }
             if (inventory.CurrentSlot > inventory.inventory.Count - 1 && inventory.inventory.Count > 0) inventory.CurrentSlot = 0;
