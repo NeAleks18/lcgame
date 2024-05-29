@@ -4,26 +4,27 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Mechanics.Inventory;
-
-public class SelectedItem : MonoBehaviour
+using Mirror;
+public class SelectedItem : NetworkBehaviour
 {
     public Inventory inventory;
+    public ScrollSlot scrollSlot;
     public Image image;
     public TextMeshProUGUI discription;
     public TextMeshProUGUI Name;
     
-
+    
     private Item item;
 
     void Start()
     {
-        SetItem();
-    }
-
-    private void OnEnable()
-    {
+        if (!isLocalPlayer) return;
+        
+            scrollSlot.OnSlotScrolled += SetItem;
+            SetItem();
         
     }
+
 
     private void SetItem()
     {
@@ -35,4 +36,6 @@ public class SelectedItem : MonoBehaviour
             Name.text = item._name;
         }
     }
+
+    
 }
