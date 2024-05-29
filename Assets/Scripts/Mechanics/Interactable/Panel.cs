@@ -15,7 +15,7 @@ namespace Mechanics.Interactable
         [SerializeField]
         private Item RequiestItem;
 
-        [SyncVar(hook = nameof(ChangeState)), SerializeField]
+        [SyncVar/*(hook = nameof(ChangeState))*/, SerializeField]
         private stateofSatellite state = stateofSatellite.Broken;
 
 

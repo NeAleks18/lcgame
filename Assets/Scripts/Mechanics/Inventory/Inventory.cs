@@ -65,6 +65,7 @@ namespace Mechanics.Inventory
             }
 
         }
+
         public void DeleteItem(Item obj)
         {
             
@@ -86,6 +87,7 @@ namespace Mechanics.Inventory
 
             }
         }
+
         public Item GetItem(int slot)
         {
             if (slot >= 0 && slot <= inventory.Count)
